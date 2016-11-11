@@ -1,0 +1,9 @@
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\bin\Debug\ZianLauncher.exe.config
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\bin\Debug\ZianLauncher.exe
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\bin\Debug\ZianLauncher.pdb
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.ZianLauncher.resources
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.Properties.Resources.resources
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csproj.GenerateResource.Cache
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.exe
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.pdb
+D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csprojResolveAssemblyReference.cache
