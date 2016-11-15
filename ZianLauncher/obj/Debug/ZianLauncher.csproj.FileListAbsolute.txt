@@ -7,3 +7,11 @@ D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csproj.G
 D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.exe
 D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.pdb
 D:\我的文档\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\bin\Debug\ZianLauncher.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\bin\Debug\ZianLauncher.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\bin\Debug\ZianLauncher.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.ZianLauncher.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.pdb
