@@ -13,7 +13,7 @@ namespace ZianLauncher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ZianLauncher());
+            Application.Run(new LauncherForm.LauncherForm());
         }
     }
 }

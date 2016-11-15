@@ -1,6 +1,6 @@
-﻿namespace ZianLauncher
+﻿namespace ZianLauncher.LauncherForm
 {
-    partial class ZianLauncher
+    partial class LauncherForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -46,20 +46,20 @@
             // textBoxJava
             // 
             this.textBoxJava.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxJava.Location = new System.Drawing.Point(47, 10);
-            this.textBoxJava.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxJava.Location = new System.Drawing.Point(63, 12);
+            this.textBoxJava.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxJava.Multiline = true;
             this.textBoxJava.Name = "textBoxJava";
-            this.textBoxJava.Size = new System.Drawing.Size(258, 32);
+            this.textBoxJava.Size = new System.Drawing.Size(343, 40);
             this.textBoxJava.TabIndex = 0;
             // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(309, 10);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(412, 12);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 32);
+            this.button1.Size = new System.Drawing.Size(84, 40);
             this.button1.TabIndex = 1;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
@@ -68,10 +68,10 @@
             // textBoxID
             // 
             this.textBoxID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxID.Location = new System.Drawing.Point(26, 46);
-            this.textBoxID.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxID.Location = new System.Drawing.Point(35, 58);
+            this.textBoxID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(65, 21);
+            this.textBoxID.Size = new System.Drawing.Size(86, 25);
             this.textBoxID.TabIndex = 2;
             this.textBoxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -79,10 +79,10 @@
             // 
             this.textBoxRAM.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxRAM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxRAM.Location = new System.Drawing.Point(317, 46);
-            this.textBoxRAM.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxRAM.Location = new System.Drawing.Point(423, 58);
+            this.textBoxRAM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxRAM.Name = "textBoxRAM";
-            this.textBoxRAM.Size = new System.Drawing.Size(56, 21);
+            this.textBoxRAM.Size = new System.Drawing.Size(74, 25);
             this.textBoxRAM.TabIndex = 3;
             this.textBoxRAM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -90,10 +90,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(2, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(3, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
+            this.label1.Size = new System.Drawing.Size(49, 19);
             this.label1.TabIndex = 4;
             this.label1.Text = "JAVA";
             // 
@@ -101,10 +100,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(2, 50);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(3, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 17);
+            this.label2.Size = new System.Drawing.Size(26, 19);
             this.label2.TabIndex = 5;
             this.label2.Text = "ID";
             // 
@@ -112,10 +110,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(246, 50);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(328, 62);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.Size = new System.Drawing.Size(82, 19);
             this.label3.TabIndex = 6;
             this.label3.Text = "RAM(MB)";
             // 
@@ -123,10 +120,10 @@
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(5, 113);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
+            this.button6.Location = new System.Drawing.Point(7, 141);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(367, 35);
+            this.button6.Size = new System.Drawing.Size(489, 44);
             this.button6.TabIndex = 11;
             this.button6.Text = "Start";
             this.button6.UseVisualStyleBackColor = false;
@@ -136,10 +133,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(92, 50);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(123, 62);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 17);
+            this.label4.Size = new System.Drawing.Size(98, 19);
             this.label4.TabIndex = 13;
             this.label4.Text = "PASSWORD";
             // 
@@ -147,10 +143,10 @@
             // 
             this.textBoxPassword.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxPassword.Location = new System.Drawing.Point(176, 46);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxPassword.Location = new System.Drawing.Point(235, 58);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(68, 21);
+            this.textBoxPassword.Size = new System.Drawing.Size(90, 25);
             this.textBoxPassword.TabIndex = 12;
             this.textBoxPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -158,31 +154,30 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(-2, 81);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(-3, 101);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 17);
+            this.label5.Size = new System.Drawing.Size(80, 19);
             this.label5.TabIndex = 15;
             this.label5.Text = "MC PATH";
             // 
             // textBoxRootPath
             // 
             this.textBoxRootPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxRootPath.Location = new System.Drawing.Point(69, 71);
-            this.textBoxRootPath.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxRootPath.Location = new System.Drawing.Point(92, 89);
+            this.textBoxRootPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxRootPath.Multiline = true;
             this.textBoxRootPath.Name = "textBoxRootPath";
-            this.textBoxRootPath.Size = new System.Drawing.Size(236, 36);
+            this.textBoxRootPath.Size = new System.Drawing.Size(314, 44);
             this.textBoxRootPath.TabIndex = 16;
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(309, 71);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(412, 89);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 35);
+            this.button2.Size = new System.Drawing.Size(84, 44);
             this.button2.TabIndex = 17;
             this.button2.Text = "Search";
             this.button2.UseVisualStyleBackColor = false;
@@ -190,9 +185,9 @@
             // 
             // ZianLauncher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 155);
+            this.ClientSize = new System.Drawing.Size(503, 197);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBoxRootPath);
             this.Controls.Add(this.label5);
@@ -207,11 +202,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxJava);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "ZianLauncher";
             this.ShowIcon = false;
-            this.Text = "Launcher1.8.8";
+            this.Text = "ForgeClientLauncher";
             this.ResumeLayout(false);
             this.PerformLayout();
 
