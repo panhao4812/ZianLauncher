@@ -20,7 +20,7 @@ namespace ZianLauncher.LauncherForm
         string _Xmx = "2048";
         string _GameRootPath = System.Environment.CurrentDirectory + @"\.minecraft";
         string _JavaPath = @"C:\Program Files\Java\jre1.8.0_111\bin\javaw.exe";
-        public static Global P = new Global(false);//debug
+       // public static Global P = new Global(false);//debug
         ForgeJson FJ = new ForgeJson();//json文件
         OriginalJson OJ = new OriginalJson();//json文件
         private void ReadJson()//初始化json文件类
@@ -29,7 +29,8 @@ namespace ZianLauncher.LauncherForm
             string OJpath = "";
             List<string> output = new List<string>();
             Global._SearchFiles(_GameRootPath + @"\versions", ".json", ref output);
-            if (output.Count != 2) { P.Print("error read json file"); return; }
+            if (output.Count != 2) { //P.Print("error read json file"); 
+                return; }
             if (Path.GetFileNameWithoutExtension(output[0]).Contains("Forge") || Path.GetFileNameWithoutExtension(output[0]).Contains("forge"))
             { FJpath = output[0]; OJpath = output[1]; }
             else { FJpath = output[1]; OJpath = output[0]; }
