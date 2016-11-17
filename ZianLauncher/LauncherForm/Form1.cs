@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using LitJson;
 namespace ZianLauncher.LauncherForm
 {
-
     public partial class LauncherForm : Form
     {
         public enum loadMode
@@ -26,68 +25,70 @@ namespace ZianLauncher.LauncherForm
         string _username = "";
         string _password = "";
         string _Xmx = "2048";
+        string FJpath = "";
+        string OJpath = "";
         string _GameRootPath = System.Environment.CurrentDirectory + @"\.minecraft";
         string _JavaPath = @"C:\Program Files\Java\jre1.8.0_111\bin\javaw.exe";
         public Global P = new Global(DebugMode);//debug
-        ForgeJson FJ = new ForgeJson();//json文件
-        OriginalJson OJ = new OriginalJson();//json文件
+        JsonFile FJ = new JsonFile();//json文件
+        JsonFile OJ = new JsonFile();//json文件
         private void ReadJson()//初始化json文件类
         {
-            string FJpath = ""; ;
-            string OJpath = "";
             List<string> output = new List<string>();
             Global._SearchFiles(_GameRootPath + @"\versions", ".json", ref output);
-            if (output.Count != 2)
+            if (output.Count == 1)
             {
-                P.Print("error read json file");
-                return;
+                OJpath = output[0];
+                OJ = JsonMapper.ToObject<JsonFile>(File.OpenText(OJpath));
+                buttonF.Text = "Forge" + Path.GetFileNameWithoutExtension(OJpath);
+                buttonF.Enabled = false;
+                buttonO.Text = Path.GetFileNameWithoutExtension(OJpath);
+                buttonO.Enabled = true;
             }
-            if (Path.GetFileNameWithoutExtension(output[0]).Contains("Forge") || Path.GetFileNameWithoutExtension(output[0]).Contains("forge"))
-            { FJpath = output[0]; OJpath = output[1]; }
-            else { FJpath = output[1]; OJpath = output[0]; }
-            FJ = JsonMapper.ToObject<ForgeJson>(File.OpenText(FJpath));
-            OJ = JsonMapper.ToObject<OriginalJson>(File.OpenText(OJpath));
-            buttonF.Text = "Forge" + Path.GetFileNameWithoutExtension(OJpath);
-            buttonO.Text = Path.GetFileNameWithoutExtension(OJpath);
+            if (output.Count == 2)
+            {
+                if (Path.GetFileNameWithoutExtension(output[0]).Contains("Forge") || Path.GetFileNameWithoutExtension(output[0]).Contains("forge"))
+                { FJpath = output[0]; OJpath = output[1]; }
+                else { FJpath = output[1]; OJpath = output[0]; }
+                FJ = JsonMapper.ToObject<JsonFile>(File.OpenText(FJpath));
+                OJ = JsonMapper.ToObject<JsonFile>(File.OpenText(OJpath));
+                buttonF.Text = "Forge" + Path.GetFileNameWithoutExtension(OJpath);
+                buttonO.Text = Path.GetFileNameWithoutExtension(OJpath);
+                buttonF.Enabled = true;
+                buttonO.Enabled = true;
+            }
             output.Clear();
             Global._SearchFiles(_GameRootPath + @"\versions", ".jar", ref output);
             _mainclass = output[0];
         }
         public string ToArguments(loadMode mode)
         {
-            if (mode == loadMode.OfflineForge) return ToForgeArgumentsOffLine();
-            if (mode == loadMode.Offline) return ToArgumentsOffLine();
-            return "ToArguments error";
-        }
-        private string ToForgeArgumentsOffLine()
-        {
             StringBuilder builder = new StringBuilder();
             builder.Append("-Xincgc");
             builder.Append(" -Xmx" + this._Xmx + "M");
-            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true");
-            builder.Append(" -Dfml.ignorePatchDiscrepancies=true");
-            builder.Append(" -Djava.library.path=" + (char)34 + this._GameRootPath + @"\$natives" + (char)34);
+            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
+            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(_Xmx) < 2048)
+            {
+                builder.Append("-XX:+UseCompressedOops");//指针压缩
+            }
+            builder.Append(" -XX:+AggressiveOpts");//使用java的新功能优化，可能不稳定
+            string native = this._GameRootPath + @"\$natives";
+            if (!Directory.Exists(native))
+            {
+                string versionID = Path.GetFileNameWithoutExtension(FJpath);
+                native = _GameRootPath + @"\versions\" + versionID + @"\" + versionID + "-natives";
+            }
+            builder.Append(" -Djava.library.path=" + (char)34 + native + (char)34);
+            //这个Djava.library.path位置可能也在version\1.x.x\里面,全是dll文件，复制一个出来即可
             builder.Append(" -cp " + (char)34);
-            builder.Append(FJ.CPArguments(_GameRootPath));
+            if (mode == loadMode.OfflineForge || mode == loadMode.OnlineForge) builder.Append(FJ.CPArguments(_GameRootPath));
             builder.Append(OJ.CPArguments(_GameRootPath));
             builder.Append(this._mainclass);
             builder.Append((char)34 + " ");
-            builder.Append(FJ.ToArgumentsOffLine(_username, _GameRootPath));
-            return builder.ToString();
-        }
-        private string ToArgumentsOffLine()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("-Xincgc");
-            builder.Append(" -Xmx" + this._Xmx + "M");
-            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true");
-            builder.Append(" -Dfml.ignorePatchDiscrepancies=true");
-            builder.Append(" -Djava.library.path=" + (char)34 + this._GameRootPath + @"\$natives" + (char)34);
-            builder.Append(" -cp " + (char)34);    
-            builder.Append(OJ.CPArguments(_GameRootPath));
-            builder.Append(this._mainclass);
-            builder.Append((char)34 + " ");
-            builder.Append(OJ.ToArgumentsOffLine(_username, _GameRootPath));
+            if (mode == loadMode.OfflineForge) builder.Append(FJ.ToArgumentsOffLine(_username, _GameRootPath));
+            if (mode == loadMode.OnlineForge) builder.Append(FJ.ToArgumentsOnLine(_username, _password, _GameRootPath));
+            if (mode == loadMode.Offline) builder.Append(OJ.ToArgumentsOffLine(_username, _GameRootPath));
+            if (mode == loadMode.Online) builder.Append(OJ.ToArgumentsOnLine(_username, _password, _GameRootPath));
             return builder.ToString();
         }
         public LauncherForm()
@@ -110,9 +111,9 @@ namespace ZianLauncher.LauncherForm
             else arguments = ToArguments(loadMode.OnlineForge);
             if (DebugMode)
             {
-                 StreamWriter sw = new StreamWriter(System.Environment.CurrentDirectory + @"\mc3.txt",false);
-                 sw.Write(arguments);
-                 sw.Close();
+                StreamWriter sw = new StreamWriter(System.Environment.CurrentDirectory + @"\mc3.txt", false);
+                sw.Write(arguments);
+                sw.Close();
             }
             ProcessStartInfo startInfo = new ProcessStartInfo(this._JavaPath)
             {
@@ -164,5 +165,61 @@ namespace ZianLauncher.LauncherForm
             javaprocess.Close();
             if (!DebugMode) this.Close();
         }
+
+        #region old method
+        /*//old method
+        private string ToForgeArgumentsOffLine()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("-Xincgc");
+            builder.Append(" -Xmx" + this._Xmx + "M");
+            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
+            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(_Xmx) < 2048)
+            {
+                builder.Append("-XX:+UseCompressedOops");
+            }
+            builder.Append(" -XX:+AggressiveOpts");
+            string native = this._GameRootPath + @"\$natives";
+            if (!Directory.Exists(native))
+            {
+                string versionID = Path.GetFileNameWithoutExtension(FJpath);
+                native = _GameRootPath + @"\versions\" + versionID + @"\" + versionID + "-natives";
+            }
+            builder.Append(" -Djava.library.path=" + (char)34 + native + (char)34);
+            builder.Append(" -cp " + (char)34);
+            builder.Append(FJ.CPArguments(_GameRootPath));
+            builder.Append(OJ.CPArguments(_GameRootPath));
+            builder.Append(this._mainclass);
+            builder.Append((char)34 + " ");
+            builder.Append(FJ.ToArgumentsOffLine(_username, _GameRootPath));
+            return builder.ToString();
+        }
+        private string ToArgumentsOffLine()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("-Xincgc");
+            builder.Append(" -Xmx" + this._Xmx + "M");
+            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
+            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(_Xmx) < 2048)
+            {
+                builder.Append("-XX:+UseCompressedOops");
+            }
+            builder.Append(" -XX:+AggressiveOpts");
+            string native = this._GameRootPath + @"\$natives";
+            if (!Directory.Exists(native))
+            {
+                string versionID = Path.GetFileNameWithoutExtension(OJpath);
+                native = _GameRootPath + @"\versions\" + versionID + @"\" + versionID + "-natives";
+            }
+            builder.Append(" -Djava.library.path=" + (char)34 + native + (char)34);
+            builder.Append(" -cp " + (char)34);
+            builder.Append(OJ.CPArguments(_GameRootPath));
+            builder.Append(this._mainclass);
+            builder.Append((char)34 + " ");
+            builder.Append(OJ.ToArgumentsOffLine(_username, _GameRootPath));
+            return builder.ToString();
+        }
+        */
+        #endregion
     }
 }
