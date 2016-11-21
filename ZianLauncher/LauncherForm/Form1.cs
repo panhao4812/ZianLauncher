@@ -144,6 +144,7 @@ namespace ZianLauncher.LauncherForm
             this.lw._password = this.textBoxPassword.Text;
             this.lw._Xmx = this.textBoxRAM.Text;
             this.lw._JavaPath = this.textBoxJava.Text;
+            lw.WriteToFile(_launcherdatapath);
             string arguments = "";
             if (this.lw._password == "") arguments = ToArguments(loadMode.Offline);
             else arguments = ToArguments(loadMode.Online);
