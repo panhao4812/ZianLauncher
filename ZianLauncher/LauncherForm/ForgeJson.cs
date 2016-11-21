@@ -7,7 +7,7 @@ using System.Net;
 
 namespace ZianLauncher.LauncherForm
 {
-    public class AuthResponse 
+    public class AuthResponse
     {
         public AuthResponse() { }
         public string cause { get; set; }
@@ -47,11 +47,11 @@ namespace ZianLauncher.LauncherForm
             }
             foreach (string str2 in cp)
             {
-                if(str2!=null && str2.Length>0)builder.Append(str2 + ';');
+                if (str2 != null && str2.Length > 0) builder.Append(str2 + ';');
             }
             return builder.ToString();
         }
-        public string ToArgumentsOnLine(string _username,string _password,string _GameRootPath)
+        public string ToArgumentsOnLine(string _username, Guid _uuid, Guid _AccessToken, string _password, string _GameRootPath)
         {
             try
             {
@@ -99,12 +99,12 @@ namespace ZianLauncher.LauncherForm
                 builder.Append(Arguments);
                 return builder.ToString();
             }
-            catch 
+            catch
             {
-                return ToArgumentsOffLine(_username, _GameRootPath);
+                return ToArgumentsOffLine(_username, _uuid, _AccessToken, _GameRootPath);
             }
         }
-        public string ToArgumentsOffLine(string _username, string _GameRootPath)
+        public string ToArgumentsOffLine(string _username, Guid _uuid, Guid _AccessToken, string _GameRootPath)
         {
             if (this.assets == "")
             {
@@ -119,8 +119,8 @@ namespace ZianLauncher.LauncherForm
                     assets = Path.GetFileNameWithoutExtension(str123[0]);
                 }
             }
-            Guid UUID = Guid.NewGuid();
-            Guid AccessToken = Guid.NewGuid();
+            Guid UUID = _uuid;
+            Guid AccessToken = _AccessToken;
             StringBuilder builder = new StringBuilder();
             builder.Append(mainClass + " ");
             string Arguments = minecraftArguments;

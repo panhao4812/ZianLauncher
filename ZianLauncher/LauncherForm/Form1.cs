@@ -22,13 +22,11 @@ namespace ZianLauncher.LauncherForm
         public static bool DebugMode = false;
         List<string> _classpass = new List<string>();//-cp
         string _mainclass = "";
-        string _username = "";
-        string _password = "";
-        string _Xmx = "2048";
         string FJpath = "";
         string OJpath = "";
         string _GameRootPath = System.Environment.CurrentDirectory + @"\.minecraft";
-        string _JavaPath = @"C:\Program Files\Java\jre1.8.0_111\bin\javaw.exe";
+        string _launcherdatapath = System.Environment.CurrentDirectory + @"\launcherdata.txt";
+        LauncherWriter lw = new LauncherWriter();
         public Global P = new Global(DebugMode);//debug
         JsonFile FJ = new JsonFile();//json文件
         JsonFile OJ = new JsonFile();//json文件
@@ -65,9 +63,9 @@ namespace ZianLauncher.LauncherForm
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("-Xincgc");
-            builder.Append(" -Xmx" + this._Xmx + "M");
+            builder.Append(" -Xmx" + this.lw._Xmx + "M");
             builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
-            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(_Xmx) < 2048)
+            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(this.lw._Xmx) < 2048)
             {
                 builder.Append("-XX:+UseCompressedOops");//指针压缩
             }
@@ -85,29 +83,31 @@ namespace ZianLauncher.LauncherForm
             builder.Append(OJ.CPArguments(_GameRootPath));
             builder.Append(this._mainclass);
             builder.Append((char)34 + " ");
-            if (mode == loadMode.OfflineForge) builder.Append(FJ.ToArgumentsOffLine(_username, _GameRootPath));
-            if (mode == loadMode.OnlineForge) builder.Append(FJ.ToArgumentsOnLine(_username, _password, _GameRootPath));
-            if (mode == loadMode.Offline) builder.Append(OJ.ToArgumentsOffLine(_username, _GameRootPath));
-            if (mode == loadMode.Online) builder.Append(OJ.ToArgumentsOnLine(_username, _password, _GameRootPath));
+            if (mode == loadMode.OfflineForge) builder.Append(FJ.ToArgumentsOffLine(this.lw._username, this.lw._uuid, this.lw._AccessToken, _GameRootPath));
+            if (mode == loadMode.OnlineForge) builder.Append(FJ.ToArgumentsOnLine(this.lw._username, this.lw._uuid, this.lw._AccessToken, this.lw._password, _GameRootPath));
+            if (mode == loadMode.Offline) builder.Append(OJ.ToArgumentsOffLine(this.lw._username, this.lw._uuid, this.lw._AccessToken, _GameRootPath));
+            if (mode == loadMode.Online) builder.Append(OJ.ToArgumentsOnLine(this.lw._username, this.lw._uuid, this.lw._AccessToken, this.lw._password, _GameRootPath));
             return builder.ToString();
         }
         public LauncherForm()
         {
             InitializeComponent();
-            this.textBoxID.Text = Process.GetCurrentProcess().ProcessName;
-            this.textBoxPassword.Text = _password;
-            this.textBoxRAM.Text = _Xmx;
-            this.textBoxJava.Text = _JavaPath;
+            lw.ReadFromFile(_launcherdatapath);
+            this.textBoxID.Text = this.lw._username;
+            this.textBoxPassword.Text = this.lw._password;
+            this.textBoxRAM.Text = this.lw._Xmx;
+            this.textBoxJava.Text = this.lw._JavaPath;
             ReadJson();
         }
         private void buttonF_Click(object sender, EventArgs e)
         {
-            _username = this.textBoxID.Text;
-            _password = this.textBoxPassword.Text;
-            _Xmx = this.textBoxRAM.Text;
-            _JavaPath = this.textBoxJava.Text;
+            this.lw._username = this.textBoxID.Text;
+            this.lw._password = this.textBoxPassword.Text;
+            this.lw._Xmx = this.textBoxRAM.Text;
+            this.lw._JavaPath = this.textBoxJava.Text;
+            lw.WriteToFile(_launcherdatapath);
             string arguments = "";
-            if (_password == "") arguments = ToArguments(loadMode.OfflineForge);
+            if (this.lw._password == "") arguments = ToArguments(loadMode.OfflineForge);
             else arguments = ToArguments(loadMode.OnlineForge);
             if (DebugMode)
             {
@@ -115,7 +115,7 @@ namespace ZianLauncher.LauncherForm
                 sw.Write(arguments);
                 sw.Close();
             }
-            ProcessStartInfo startInfo = new ProcessStartInfo(this._JavaPath)
+            ProcessStartInfo startInfo = new ProcessStartInfo(this.lw._JavaPath)
             {
                 Arguments = arguments,
                 UseShellExecute = false,
@@ -140,12 +140,12 @@ namespace ZianLauncher.LauncherForm
         }
         private void buttonO_Click(object sender, EventArgs e)
         {
-            _username = this.textBoxID.Text;
-            _password = this.textBoxPassword.Text;
-            _Xmx = this.textBoxRAM.Text;
-            _JavaPath = this.textBoxJava.Text;
+            this.lw._username = this.textBoxID.Text;
+            this.lw._password = this.textBoxPassword.Text;
+            this.lw._Xmx = this.textBoxRAM.Text;
+            this.lw._JavaPath = this.textBoxJava.Text;
             string arguments = "";
-            if (_password == "") arguments = ToArguments(loadMode.Offline);
+            if (this.lw._password == "") arguments = ToArguments(loadMode.Offline);
             else arguments = ToArguments(loadMode.Online);
             if (DebugMode)
             {
@@ -153,7 +153,7 @@ namespace ZianLauncher.LauncherForm
                 sw.Write(arguments);
                 sw.Close();
             }
-            ProcessStartInfo startInfo = new ProcessStartInfo(this._JavaPath)
+            ProcessStartInfo startInfo = new ProcessStartInfo(this.lw._JavaPath)
             {
                 Arguments = arguments,
                 UseShellExecute = false,
@@ -165,61 +165,5 @@ namespace ZianLauncher.LauncherForm
             javaprocess.Close();
             if (!DebugMode) this.Close();
         }
-
-        #region old method
-        /*//old method
-        private string ToForgeArgumentsOffLine()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("-Xincgc");
-            builder.Append(" -Xmx" + this._Xmx + "M");
-            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
-            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(_Xmx) < 2048)
-            {
-                builder.Append("-XX:+UseCompressedOops");
-            }
-            builder.Append(" -XX:+AggressiveOpts");
-            string native = this._GameRootPath + @"\$natives";
-            if (!Directory.Exists(native))
-            {
-                string versionID = Path.GetFileNameWithoutExtension(FJpath);
-                native = _GameRootPath + @"\versions\" + versionID + @"\" + versionID + "-natives";
-            }
-            builder.Append(" -Djava.library.path=" + (char)34 + native + (char)34);
-            builder.Append(" -cp " + (char)34);
-            builder.Append(FJ.CPArguments(_GameRootPath));
-            builder.Append(OJ.CPArguments(_GameRootPath));
-            builder.Append(this._mainclass);
-            builder.Append((char)34 + " ");
-            builder.Append(FJ.ToArgumentsOffLine(_username, _GameRootPath));
-            return builder.ToString();
-        }
-        private string ToArgumentsOffLine()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("-Xincgc");
-            builder.Append(" -Xmx" + this._Xmx + "M");
-            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
-            if (Environment.Is64BitOperatingSystem && Convert.ToInt32(_Xmx) < 2048)
-            {
-                builder.Append("-XX:+UseCompressedOops");
-            }
-            builder.Append(" -XX:+AggressiveOpts");
-            string native = this._GameRootPath + @"\$natives";
-            if (!Directory.Exists(native))
-            {
-                string versionID = Path.GetFileNameWithoutExtension(OJpath);
-                native = _GameRootPath + @"\versions\" + versionID + @"\" + versionID + "-natives";
-            }
-            builder.Append(" -Djava.library.path=" + (char)34 + native + (char)34);
-            builder.Append(" -cp " + (char)34);
-            builder.Append(OJ.CPArguments(_GameRootPath));
-            builder.Append(this._mainclass);
-            builder.Append((char)34 + " ");
-            builder.Append(OJ.ToArgumentsOffLine(_username, _GameRootPath));
-            return builder.ToString();
-        }
-        */
-        #endregion
     }
 }

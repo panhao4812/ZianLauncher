@@ -45,6 +45,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LauncherWriter.cs" />
     <Compile Include="LauncherForm\ForgeJson.cs" />
     <Compile Include="LauncherForm\Form1.cs">
       <SubType>Form</SubType>
