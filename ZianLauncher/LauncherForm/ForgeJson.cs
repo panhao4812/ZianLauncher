@@ -51,7 +51,7 @@ namespace ZianLauncher.LauncherForm
             }
             return builder.ToString();
         }
-        public string ToArgumentsOnLine(string _username, Guid _uuid, Guid _AccessToken, string _password, string _GameRootPath)
+        public string ToArgumentsOnLine(string _username, string _uuid, string _AccessToken, string _password, string _GameRootPath)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace ZianLauncher.LauncherForm
                 return ToArgumentsOffLine(_username, _uuid, _AccessToken, _GameRootPath);
             }
         }
-        public string ToArgumentsOffLine(string _username, Guid _uuid, Guid _AccessToken, string _GameRootPath)
+        public string ToArgumentsOffLine(string _username, string _uuid, string _AccessToken, string _GameRootPath)
         {
             if (this.assets == "")
             {
@@ -119,20 +119,20 @@ namespace ZianLauncher.LauncherForm
                     assets = Path.GetFileNameWithoutExtension(str123[0]);
                 }
             }
-            Guid UUID = _uuid;
-            Guid AccessToken = _AccessToken;
+            string UUID = _uuid;
+            string AccessToken = _AccessToken;
             StringBuilder builder = new StringBuilder();
             builder.Append(mainClass + " ");
             string Arguments = minecraftArguments;
             Arguments = Arguments.Replace("--username ${auth_player_name}", "--username " + _username);
-            Arguments = Arguments.Replace("--session ${auth_session}", "--session " + AccessToken.ToString("N"));
+            Arguments = Arguments.Replace("--session ${auth_session}", "--session " + AccessToken);
             Arguments = Arguments.Replace("--version ${version_name}", "--version " + id);
             Arguments = Arguments.Replace("--gameDir ${game_directory}", "--gameDir " + (char)34 + _GameRootPath + (char)34);
             Arguments = Arguments.Replace("--assetsDir ${assets_root}", "--assetsDir " + (char)34 + _GameRootPath + @"\assets" + (char)34);
             Arguments = Arguments.Replace("--assetsDir ${game_assets}", "--assetsDir " + (char)34 + _GameRootPath + @"\assets" + (char)34);
             Arguments = Arguments.Replace("--assetIndex ${assets_index_name}", "--assetIndex " + assets);
-            Arguments = Arguments.Replace("--uuid ${auth_uuid}", "--uuid " + UUID.ToString("N"));
-            Arguments = Arguments.Replace("--accessToken ${auth_access_token}", "--accessToken " + AccessToken.ToString("N"));
+            Arguments = Arguments.Replace("--uuid ${auth_uuid}", "--uuid " + UUID);
+            Arguments = Arguments.Replace("--accessToken ${auth_access_token}", "--accessToken " + AccessToken);
             Arguments = Arguments.Replace("--userProperties ${user_properties}", "--userProperties {}");
             Arguments = Arguments.Replace("--userType ${user_type}", "--userType Mojang");
             // Arguments = Arguments.Replace("--versionType ${version_type}", "--versionType release");
