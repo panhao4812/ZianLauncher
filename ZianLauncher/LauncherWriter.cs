@@ -43,10 +43,12 @@ namespace ZianLauncher
         }
         public void ReadFromFile(string path)
         {
-           
-                StreamReader sr = new StreamReader(path);
+
+            StreamReader sr;
+            if (File.Exists(path)) sr = new StreamReader(path); else return;
             try
             {
+                
                 this.CreateFrom(JsonMapper.ToObject<LauncherWriter>(sr.ReadToEnd()));
                 sr.Close();
             }
