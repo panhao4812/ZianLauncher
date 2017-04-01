@@ -35,7 +35,7 @@ namespace ZianLauncher
         {
             if (!_enable) return;
             AllocConsole();
-            Console.WindowWidth = 192;
+            Console.WindowWidth = 182;
             Console.Clear();
         }
         public void Print(string str)

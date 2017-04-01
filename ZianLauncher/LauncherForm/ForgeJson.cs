@@ -69,7 +69,7 @@ namespace ZianLauncher.LauncherForm
                 if (this.assets == "")
                 {
                     List<string> str123 = new List<string>();
-                    Global._SearchFiles(_GameRootPath + @"\assets\imdexes", ".json", ref str123);
+                    Global._SearchFiles(_GameRootPath + @"\assets\indexes", ".json", ref str123);
                     if (str123.Count == 0)
                     {
                         string[] str3 = id.Split('.'); assets = str3[0] + "." + str3[1];
@@ -109,7 +109,7 @@ namespace ZianLauncher.LauncherForm
             if (this.assets == "")
             {
                 List<string> str123 = new List<string>();
-                Global._SearchFiles(_GameRootPath + @"\assets\imdexes", ".json", ref str123);
+                Global._SearchFiles(_GameRootPath + @"\assets\indexes", ".json", ref str123);
                 if (str123.Count == 0)
                 {
                     string[] str3 = id.Split('.'); assets = str3[0] + "." + str3[1];

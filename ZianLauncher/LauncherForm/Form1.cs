@@ -73,7 +73,15 @@ namespace ZianLauncher.LauncherForm
             string native = this._GameRootPath + @"\$natives";
             if (!Directory.Exists(native))
             {
-                string versionID = Path.GetFileNameWithoutExtension(FJpath);
+                string versionID = "";
+                if (FJpath!="")
+                {
+                     versionID = Path.GetFileNameWithoutExtension(FJpath);
+                }
+                else
+                {
+                     versionID = Path.GetFileNameWithoutExtension(OJpath);
+                }
                 native = _GameRootPath + @"\versions\" + versionID + @"\" + versionID + "-natives";
             }
             builder.Append(" -Djava.library.path=" + (char)34 + native + (char)34);

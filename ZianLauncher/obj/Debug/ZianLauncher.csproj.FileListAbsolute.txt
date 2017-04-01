@@ -24,3 +24,7 @@ C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\bin\debug\Zian
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.LauncherForm.LauncherForm.resources
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.Properties.Resources.resources
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\mc\minecraft1.11.2\ZianLauncher.exe
+C:\Users\Administrator\Desktop\mc\minecraft1.11.2\ZianLauncher.pdb
+C:\Users\Administrator\Desktop\mc\minecraft1.11.2withoutForge\ZianLauncher.exe
+C:\Users\Administrator\Desktop\mc\minecraft1.11.2withoutForge\ZianLauncher.pdb
