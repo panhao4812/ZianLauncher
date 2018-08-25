@@ -19,7 +19,7 @@ namespace ZianLauncher.LauncherForm
             OnlineForge,
             OfflineForge
         }
-        public static bool DebugMode = false;
+        public static bool DebugMode = true;
         List<string> _classpass = new List<string>();//-cp
         string _mainclass = "";
         string FJpath = "";
@@ -62,14 +62,30 @@ namespace ZianLauncher.LauncherForm
         public string ToArguments(loadMode mode)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append("-Xincgc");
-            builder.Append(" -Xmx" + this.lw._Xmx + "M");
-            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
+            if (Path.GetFileNameWithoutExtension(this.textBoxJava.Text) == "javaw")
+            {
+                builder.Append(" -Xincgc");
+                builder.Append(" -XX:+AggressiveOpts");//使用java的新功能优化，可能不稳定
+            }
+            else
+            {
+                //builder.Append(" -Dminecraft.client.jar =.minecraft\\versions\\1.13\\1.13.jar");
+                builder.Append(" -XX:+UnlockExperimentalVMOptions");
+                builder.Append(" -XX:+UseG1GC");
+                builder.Append(" -XX:G1NewSizePercent=20");
+                builder.Append(" -XX:G1ReservePercent=20");
+                builder.Append(" -XX:MaxGCPauseMillis=50");
+                builder.Append(" -XX:G1HeapRegionSize=16M");
+                builder.Append(" -XX:-UseAdaptiveSizePolicy");
+                builder.Append(" -XX:-OmitStackTraceInFastThrow");
+                builder.Append(" -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");
+            }
             if (Environment.Is64BitOperatingSystem && Convert.ToInt32(this.lw._Xmx) < 2048)
             {
-                builder.Append("-XX:+UseCompressedOops");//指针压缩
-            }
-            builder.Append(" -XX:+AggressiveOpts");//使用java的新功能优化，可能不稳定
+                builder.Append(" -XX:+UseCompressedOops");//指针压缩
+            }         
+            builder.Append(" -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true");
+            builder.Append(" -Xmx" + this.lw._Xmx + "M");
             string native = this._GameRootPath + @"\$natives";
             if (!Directory.Exists(native))
             {
@@ -119,7 +135,7 @@ namespace ZianLauncher.LauncherForm
             else arguments = ToArguments(loadMode.OnlineForge);
             if (DebugMode)
             {
-                StreamWriter sw = new StreamWriter(System.Environment.CurrentDirectory + @"\mc3.txt", false);
+                StreamWriter sw = new StreamWriter(System.Environment.CurrentDirectory + @"\ZianLauncherArguments.txt", false);
                 sw.Write(arguments);
                 sw.Close();
             }
@@ -141,6 +157,7 @@ namespace ZianLauncher.LauncherForm
             ofd.InitialDirectory = System.Environment.CurrentDirectory;
             ofd.RestoreDirectory = true;
             ofd.Filter = "(*.exe)|*.exe";
+            ofd.Title = "Please select jawaw.exe or java.exe";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 this.textBoxJava.Text = ofd.FileName;
@@ -148,6 +165,11 @@ namespace ZianLauncher.LauncherForm
         }
         private void buttonO_Click(object sender, EventArgs e)
         {
+            if (!File.Exists(this.textBoxJava.Text))
+            {
+                this.textBoxJava.Text = "Select Java path!";
+                return;
+            }
             this.lw._username = this.textBoxID.Text;
             this.lw._password = this.textBoxPassword.Text;
             this.lw._Xmx = this.textBoxRAM.Text;
@@ -158,7 +180,7 @@ namespace ZianLauncher.LauncherForm
             else arguments = ToArguments(loadMode.Online);
             if (DebugMode)
             {
-                StreamWriter sw = new StreamWriter(System.Environment.CurrentDirectory + @"\mc2.txt", false);
+                StreamWriter sw = new StreamWriter(System.Environment.CurrentDirectory + @"\ZianLauncherArguments.txt", false);
                 sw.Write(arguments);
                 sw.Close();
             }

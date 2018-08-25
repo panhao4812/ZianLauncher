@@ -34,12 +34,12 @@ namespace ZianLauncher
         }
         public void DefaultData()
         {
-            _username = "xionghaizi";
+            _username = "Brats";
             _uuid = Guid.NewGuid().ToString("N");
             _AccessToken = Guid.NewGuid().ToString("N");
             _password = "";
             _Xmx = "2048";
-            _JavaPath = @"C:\Program Files\Java\jre1.8.0_111\bin\javaw.exe";
+            _JavaPath = "C:\\Program Files\\Java\\jre1.8.0_161\\bin\\javaw.exe";
         }
         public void ReadFromFile(string path)
         {

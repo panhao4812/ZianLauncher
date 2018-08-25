@@ -135,6 +135,7 @@ namespace ZianLauncher.LauncherForm
             Arguments = Arguments.Replace("--accessToken ${auth_access_token}", "--accessToken " + AccessToken);
             Arguments = Arguments.Replace("--userProperties ${user_properties}", "--userProperties {}");
             Arguments = Arguments.Replace("--userType ${user_type}", "--userType Mojang");
+            Arguments = Arguments.Replace("--versionType ${version_type}", "--versionType release");
             // Arguments = Arguments.Replace("--versionType ${version_type}", "--versionType release");
             builder.Append(Arguments);
             return builder.ToString();
