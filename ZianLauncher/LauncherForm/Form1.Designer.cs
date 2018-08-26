@@ -196,7 +196,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "LauncherForm";
-            this.Text = "LauncherForWindows 1.12";
+            this.Text = "LauncherForWindows 1.12.2";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -27,10 +27,10 @@ C:\Users\Administrator\Desktop\Minecraft1.12\ZianLauncher.exe
 C:\Users\Administrator\Desktop\Minecraft1.12\ZianLauncher.pdb
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\bin\debug\ZianLauncher.exe
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\bin\debug\ZianLauncher.pdb
+C:\Users\Administrator\Desktop\Minecraft 1.12.2\ZianLauncher.exe
+C:\Users\Administrator\Desktop\Minecraft 1.12.2\ZianLauncher.pdb
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.LauncherForm.LauncherForm.resources
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.Properties.Resources.resources
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.exe
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.pdb
-C:\Users\Administrator\Desktop\Minecraft 1.12.2\ZianLauncher.exe
-C:\Users\Administrator\Desktop\Minecraft 1.12.2\ZianLauncher.pdb

@@ -19,7 +19,7 @@ namespace ZianLauncher.LauncherForm
             OnlineForge,
             OfflineForge
         }
-        public static bool DebugMode = true;
+        public static bool DebugMode = false;
         List<string> _classpass = new List<string>();//-cp
         string _mainclass = "";
         string FJpath = "";

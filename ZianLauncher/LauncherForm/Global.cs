@@ -21,7 +21,6 @@ namespace ZianLauncher
                 _enable = value;
                 initConsole();
             }
-
         }
         public Global()
         {
@@ -61,7 +60,6 @@ namespace ZianLauncher
             {
                 Console.WriteLine(str);
             }
-
         }
         public void Print(IEnumerable<double> collection)
         {
@@ -277,7 +275,6 @@ namespace ZianLauncher
             p.WaitForExit();//等待程序执行完退出进程
             p.Close();
         }
-
     }
     
 }
