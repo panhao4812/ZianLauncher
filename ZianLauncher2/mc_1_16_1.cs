@@ -5,7 +5,7 @@
         public string ToArguments(Global.loadMode mode, string _GameRootPath, string ID, string RAM)
         {
             string str = "";
-            str += " -Dfml.ignoreInvalidMinecraftCertificates=true";
+            str += "-Dfml.ignoreInvalidMinecraftCertificates=true";
             str += " -Dfml.ignorePatchDiscrepancies=true";
             str += " -Xmx" + RAM + "M";
             str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.1\1.16.1-natives";

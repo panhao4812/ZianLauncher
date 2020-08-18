@@ -34,3 +34,4 @@ C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\Zian
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.exe
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.pdb
+C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher\obj\Debug\ZianLauncher.csprojResolveAssemblyReference.cache

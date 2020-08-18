@@ -7,7 +7,7 @@ namespace ZianLauncher2
 {
     public partial class LauncherForm2 : Form
     {        
-        public static bool DebugMode = true;
+        public static bool DebugMode = false;
         string _GameRootPath = System.Environment.CurrentDirectory + @"\.minecraft";
         public Global P = new Global(DebugMode);//debug
         public string ToArguments(Global.loadMode mode)
