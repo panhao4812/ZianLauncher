@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ZianLauncher.LauncherForm
+namespace ZianLauncher2
 {
     public class Global
     {

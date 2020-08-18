@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LitJson;
 using System.IO;
 
-namespace ZianLauncher
+namespace ZianLauncher.LauncherForm
 {
     public class LauncherWriter
     {
