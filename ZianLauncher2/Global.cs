@@ -8,6 +8,11 @@ namespace ZianLauncher2
 {
     public class Global
     {
+        public enum loadMode
+        {
+            Offline,
+            OfflineForge
+        }
         private bool _enable = false;
         public bool Enable
         {
