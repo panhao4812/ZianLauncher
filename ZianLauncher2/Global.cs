@@ -6,6 +6,10 @@ using System.Text;
 
 namespace ZianLauncher2
 {
+    public abstract class VersionFile
+    {
+        public abstract string ToArguments(Global.loadMode mode, string _GameRootPath, string ID, string RAM);
+    }
     public class Global
     {
         public enum loadMode

@@ -7,17 +7,22 @@ namespace ZianLauncher2
 {
     public partial class LauncherForm2 : Form
     {        
-        public static bool DebugMode = false;
+        public static bool DebugMode = true;
         string _GameRootPath = System.Environment.CurrentDirectory + @"\.minecraft";
         public Global P = new Global(DebugMode);//debug
         public string ToArguments(Global.loadMode mode)
         {
-            mc_1_16_1 mc = new mc_1_16_1();
-            return mc.ToArguments(mode, _GameRootPath, textBoxID.Text, textBoxRAM.Text);
+            VersionFile mc;
+            if (VersionBox.Text == "1.16.1") mc = new mc_1_16_1();
+            else if (VersionBox.Text == "1.16.2") mc = new mc_1_16_2();
+            else return "";
+            return mc.ToArguments(mode, _GameRootPath, textBoxID.Text, RAMBox.Text);
         }
         public LauncherForm2()
         {
             InitializeComponent();
+            RAMBox.SelectedIndex = 1;
+            VersionBox.SelectedIndex = 1;
         }
         private void buttonF_Click(object sender, EventArgs e)
         {
@@ -27,7 +32,7 @@ namespace ZianLauncher2
                 return;
             }
             string arguments = ToArguments(Global.loadMode.OfflineForge);
-            StartProcess(arguments);
+            if (arguments != "") StartProcess(arguments);
         }
         private void buttonO_Click(object sender, EventArgs e)
         {
@@ -37,7 +42,7 @@ namespace ZianLauncher2
                 return;
             }
             string arguments = ToArguments(Global.loadMode.Offline);
-            StartProcess(arguments);
+            if(arguments!="")StartProcess(arguments);
         }
         public void StartProcess(string arguments)
         {

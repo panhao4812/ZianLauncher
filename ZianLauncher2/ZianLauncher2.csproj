@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="mc_1_16_1.cs" />
+    <Compile Include="mc_1_16_2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

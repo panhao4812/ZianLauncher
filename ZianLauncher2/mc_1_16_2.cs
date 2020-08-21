@@ -1,6 +1,12 @@
-﻿namespace ZianLauncher2
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ZianLauncher2
 {
-    public class mc_1_16_1: VersionFile
+    public class mc_1_16_2: VersionFile
     {
         public override string ToArguments(Global.loadMode mode, string _GameRootPath, string ID, string RAM)
         {
@@ -8,25 +14,25 @@
             str += "-Dfml.ignoreInvalidMinecraftCertificates=true";
             str += " -Dfml.ignorePatchDiscrepancies=true";
             str += " -Xmx" + RAM + "M";
-            str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.1\1.16.1-natives";
+            str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.2\1.16.2-natives";
             if (mode == Global.loadMode.Offline)
             {
-                //str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.1\1.16.1-natives";
-                str +=   OfflineArguments(_GameRootPath);
+                //str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.2\1.16.2-natives";
+                str += OfflineArguments(_GameRootPath);
                 str += " net.minecraft.client.main.Main";
-                str += " --version 1.16.1";
+                str += " --version 1.16.2";
             }
             else if (mode == Global.loadMode.OfflineForge)
             {
-                //str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.1-forge-32.0.108\1.16.1-forge-32.0.108-natives";
-                str +=  ForgeArguments(_GameRootPath);
+                //str += " -Djava.library.path=" + _GameRootPath + @"\versions\1.16.2-forge-33.0.5\1.16.2-forge-33.0.5-natives";
+                str += ForgeArguments(_GameRootPath);
                 str += " cpw.mods.modlauncher.Launcher";
                 str += " --launchTarget fmlclient";
-                str += " --fml.forgeVersion 32.0.108";
-                str += " --fml.mcVersion 1.16.1";
+                str += " --fml.forgeVersion 33.0.5";
+                str += " --fml.mcVersion 1.16.2";
                 str += " --fml.forgeGroup net.minecraftforge";
                 str += " --fml.mcpVersion 20200625.160719";
-                str += " --version 1.16.1-forge-32.0.108";
+                str += " --version 1.16.2-forge-33.0.5";
             }
             str += " --username " + ID;
             str += " --gameDir " + _GameRootPath;
@@ -73,7 +79,7 @@
 @"\libraries\io\netty\netty-all\4.1.25.Final\netty-all-4.1.25.Final.jar;",
 @"\libraries\com\ibm\icu\icu4j\66.1\icu4j-66.1.jar;",
 @"\libraries\it\unimi\dsi\fastutil\8.2.1\fastutil-8.2.1.jar;",
-@"\versions\1.16.1\1.16.1.jar"
+@"\versions\1.16.2\1.16.2.jar"
         };
 
         public string[] Forge_cpclass =
@@ -90,7 +96,7 @@
 @"\libraries\net/minecraftforge/eventbus/3.0.3-service/eventbus-3.0.3-service.jar;",
 @"\libraries\net/minecraftforge/unsafe/0.2.0/unsafe-0.2.0.jar;",
 @"\libraries\com/electronwill/night-config/toml/3.6.2/toml-3.6.2.jar;",
-@"\libraries\net/minecraftforge/forge/1.16.1-32.0.108/forge-1.16.1-32.0.108.jar;",
+@"\libraries\net/minecraftforge/forge/1.16.2-33.0.5/forge-1.16.2-33.0.5.jar;",
 @"\libraries\net/jodah/typetools/0.8.1/typetools-0.8.1.jar;",
 @"\libraries\org/apache/maven/maven-artifact/3.6.0/maven-artifact-3.6.0.jar;",
 @"\libraries\net/minecrell/terminalconsoleappender/1.2.0/terminalconsoleappender-1.2.0.jar;",
@@ -134,7 +140,7 @@
 @"\libraries\io/netty/netty-all/4.1.25.Final/netty-all-4.1.25.Final.jar;",
 @"\libraries\com/ibm/icu/icu4j/66.1/icu4j-66.1.jar;",
 @"\libraries\it/unimi/dsi/fastutil/8.2.1/fastutil-8.2.1.jar;",
-@"\versions\1.16.1\1.16.1-forge-32.0.108.jar"
+@"\versions\1.16.2\1.16.2-forge-33.0.5.jar"
 };
         string OfflineArguments(string _GameRootPath)
         {
@@ -147,7 +153,7 @@
         }
         string ForgeArguments(string _GameRootPath)
         {
-            string str = " -cp ";      
+            string str = " -cp ";
             for (int i = 0; i < Forge_cpclass.Length; i++)
             {
                 str += _GameRootPath + Forge_cpclass[i];
