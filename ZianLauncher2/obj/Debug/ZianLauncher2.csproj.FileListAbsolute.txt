@@ -8,5 +8,5 @@ C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher2\obj\Debug\Zia
 C:\Users\Administrator\Desktop\1.16\ZianLauncher2.exe.config
 C:\Users\Administrator\Desktop\1.16\ZianLauncher2.exe
 C:\Users\Administrator\Desktop\1.16\ZianLauncher2.pdb
-C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher2\obj\Debug\ZianLauncher2.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher2\obj\Debug\ZianLauncher2.LauncherForm2.resources
+C:\Users\Administrator\Documents\GitHub\ZianLauncher\ZianLauncher2\obj\Debug\ZianLauncher2.csprojResolveAssemblyReference.cache
